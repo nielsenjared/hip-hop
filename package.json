@@ -1,0 +1,33 @@
+{
+  "name": "hip-hop",
+  "version": "1.0.0",
+  "description": "Beat created using Hip Hop Word Count lyric sentiment.",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nielsenjared/hip-hop.git"
+  },
+  "keywords": [
+    "hip",
+    "hop",
+    "Tone.js",
+    "Node.js",
+    "audio"
+  ],
+  "author": "Jared Nielsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nielsenjared/hip-hop/issues"
+  },
+  "homepage": "https://github.com/nielsenjared/hip-hop#readme"
+}
