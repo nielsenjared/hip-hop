@@ -2,9 +2,11 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 
+const keys = require('./config/keys.js');
+
 const app = express();
 
-const token = ;
+const token = keys.hhwcToken;
 const url = 'https://dev.hiphopwordcount.com:443/api/lyrics/?q=';
 let query = 'gold';
 
