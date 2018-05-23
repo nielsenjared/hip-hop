@@ -8,7 +8,6 @@ const app = express();
 
 const token = keys.hhwcToken;
 const url = 'https://dev.hiphopwordcount.com:443/api/lyrics/?q=';
-let query = 'gold';
 
 app.use(express.static("public"));
 
@@ -18,12 +17,13 @@ app.get("/", function(req, res) {
 
 app.get("/api/:query", function(req, res) {
   let query = req.params.query;
+  console.log(query);
   axios.get(url + query,
     {
       headers: { 'Authorization': 'Token ' + token }
     })
     .then(function (response) {
-      console.log(response.data.results.length);
+      // console.log(response.data.results);
       res.send(response.data);
     })
     .catch(function (error) {

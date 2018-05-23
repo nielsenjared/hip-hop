@@ -2,7 +2,7 @@ $(function() {
   let state = 0;
   const player = beats => {
     const drums = new Tone.MembraneSynth().toMaster();
-
+    // Tone.Transport.stop();
     const loop = new Tone.Pattern(function(time, note){
       drums.triggerAttackRelease(note, "16n", time);
       // Draw.schedule takes a callback and a time to invoke the callback
@@ -20,7 +20,6 @@ $(function() {
 
     Tone.Transport.start("+0.1");
   };// end player()
-  //TODO https://github.com/Tonejs/Tone.js/blob/master/examples/animationSync.html
 
   const beatMaker = data => {
     for (let i = 0; i < 8; i++) {
@@ -41,9 +40,6 @@ $(function() {
     })
   )};// end beatMaker()
 
-
-
-
   function hiphopAPI(query) {
     $.get('/api/' + query, function(data){
       if (jQuery.isEmptyObject(data)) {
@@ -56,46 +52,10 @@ $(function() {
 
   $("#query-button").on("click", function(event) {
     event.preventDefault();
-    let query = $("#query-button").val().trim();
+    for (let i = 0; i < 8; i++) {
+      $("#beat-" + i).empty();
+    }
+    let query = $("#query-input").val().trim();
     hiphopAPI(query);
   });
-
-
-  // //TODO read up on better handling of Draw https://tonejs.github.io/docs/r11/Part
-  // function playScrape(chords) {
-  //   var n = '16n';
-  //   synthPart = new Tone.Part(function(time, chord){
-  //     synth.triggerAttackRelease(chord, n, time);
-  //
-  //     Tone.Draw.schedule(function(){
-  //       renderGraph(chord);
-  //       if (chord == chords[0][1]) {
-  //         $("#contribution-graph").empty();
-  //       }
-  //
-  //     }, time);
-  //   }, chords).start("0");
-  //
-  //   synthPart.loop = true;
-  //   synthPart.humanize = false;
-  //
-  //   Tone.Transport.bpm.value = 10;
-  //   Tone.Transport.start("+0.1");
-  // } // end playScrape
-  // //TODO https://github.com/Tonejs/Tone.js/wiki/Arpeggiator
-  //
-  // function renderGraph(chord) {
-  //
-  //   var sun = $("<div>&nbsp;</div>").attr("class", chord[0]);
-  //   var mon = $("<div>&nbsp;</div>").attr("class", chord[1]);
-  //   var tue = $("<div>&nbsp;</div>").attr("class", chord[2]);
-  //   var wed = $("<div>&nbsp;</div>").attr("class", chord[3]);
-  //   var thu = $("<div>&nbsp;</div>").attr("class", chord[4]);
-  //   var fri = $("<div>&nbsp;</div>").attr("class", chord[5]);
-  //   var sat = $("<div>&nbsp;</div>").attr("class", chord[6]);
-  //
-  //   var week = $("<div>").addClass("animated pulse week").append(sun, mon, tue, wed, thu, fri, sat);
-  //   $("#contribution-graph").append(week);
-  //
-  // }
 });
