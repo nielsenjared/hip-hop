@@ -4,26 +4,56 @@
     <meta charset="utf-8">
     <title></title>
     <script src="./Tone.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="stylesheet" href="./animate.min.css">
   </head>
   <body>
 
     <div id="container">
-      <div id="chart"></div>
-      <h1></h1>
-      <form id="query-form">
-        <input type="text" id="query-input" placeholder="Enter keyword" size="25">
-        <input id="query-button" type="submit" value="Start">
-      </form>
-      <!-- <div class="about">
-      <a href="https://github.com/nielsenjared/in-g" class="about">
-        <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" width="20px" height="20px'">
-      </a>
-      </div> -->
+      <div class="row" >
+        <div class="col-md-2"></div>
+        <div id="beat-0" class="col-md-1"></div>
+        <div id="beat-1" class="col-md-1"></div>
+        <div id="beat-2" class="col-md-1"></div>
+        <div id="beat-3" class="col-md-1"></div>
+        <div id="beat-4" class="col-md-1"></div>
+        <div id="beat-5" class="col-md-1"></div>
+        <div id="beat-6" class="col-md-1"></div>
+        <div id="beat-7" class="col-md-1"></div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <h1>Sentiment Beat</h1>
+          <form id="query-form">
+            <input type="text" id="query-input" placeholder="Enter keyword" size="25">
+            <input id="query-button" type="submit" value="Start">
+          </form>
+        </div>
+        <div class="col-md-4">
+          <p>
+            Querying <a href="http://staplecrops.com/category/hip_hop_word_count/">Hip Hop Word Count API</a> for lyrics by keyword. Songs with 'positive' sentiment are sonified as snare hits, songs with 'negative'sentiment are sonified as bass kicks.
+          </p>
+          <!-- <div class="about">
+          <a href="https://github.com/nielsenjared/in-g" class="about">
+            <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" width="20px" height="20px'">
+          </a>
+          </div> -->
+        </div>
+        <div class="col-md-2"></div>
+      </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="./index.js"></script>
   </body>
 </html>

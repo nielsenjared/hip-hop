@@ -1,0 +1,33 @@
+#beat-0,
+#beat-1,
+#beat-2,
+#beat-3,
+#beat-4,
+#beat-5,
+#beat-6,
+#beat-7 {
+  background-color: white;
+  color: black;
+  height: 150px;
+
+}
+.title {
+  position: relative;
+  height: 75%;
+}
+
+.title p {
+  vertical-align: text-bottom;
+  position: absolute;
+  bottom: 0;
+}
+
+.beat {
+  height: 15%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+/* .row {
+  margin-top: 5%;
+} */

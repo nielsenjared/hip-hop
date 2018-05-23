@@ -1,38 +1,54 @@
 $(function() {
+  let state = 0;
   const player = beats => {
-    const drums = new Tone.Synth({
-      "oscillator" : {
-        "type" : "fmsine4",
-        "modulationType" : "square"
-      }
-    }).toMaster();
+    const drums = new Tone.MembraneSynth().toMaster();
 
     const loop = new Tone.Pattern(function(time, note){
       drums.triggerAttackRelease(note, "16n", time);
       // Draw.schedule takes a callback and a time to invoke the callback
       Tone.Draw.schedule(function(){
         //the callback synced to the animation frame at the given time
-        $("#"+note).css("opacity", 1).animate({"opacity" : 0}, 300)
+        // $("#beat-" + state + " .beat").css("opacity", 1).animate({"opacity" : 0}, 300);
+        $("#beat-" + state + " .beat").css("opacity", 1).animate({"opacity" : 0}, 300);
+        state++;
+        if (state > 7) {
+          state = 0;
+        }
       }, time);
     }, beats).start(0);
-    loop.interval = "16n";
+    loop.interval = "8n";
 
     Tone.Transport.start("+0.1");
-  }
+  };// end player()
+  //TODO https://github.com/Tonejs/Tone.js/blob/master/examples/animationSync.html
 
   const beatMaker = data => {
-    return player(data.results.map(e => {
-      return e.sentiment.sentiment_type == 'negative' ? "G3" : "G9";
+    for (let i = 0; i < 8; i++) {
+
+      let t = $('<div>').addClass("title");
+      t.append(`<p>"${data.results[i].title}"</p>`);
+      $("#beat-" + i).append(t);
+      let b = $('<div>').addClass("beat");
+      // b.append(`<p>"${data.results[i].sentiment.sentiment_type}"</p>`);
+      $("#beat-" + i).append(b);
+      // $("#beat-" + i).append(`<p>"${data.results[i].title}"</p>`);
+      $("#beat-" + i).append(`<p>${data.results[i].artist.name}</p>`);
+
+    }
+
+    return player(data.results.slice(0, 8).map(e => {
+      return e.sentiment.sentiment_type == 'negative' ? "C2" : "C4";
     })
-  )};
+  )};// end beatMaker()
+
+
+
 
   function hiphopAPI(query) {
     $.get('/api/' + query, function(data){
       if (jQuery.isEmptyObject(data)) {
-        $("#chart").text("Not a valid keyword");
-        // state = false;
+        $("h1").text("Not a valid keyword");
       } else {
-        $("#chart").empty();
         beatMaker(data);
       }
     });
@@ -44,44 +60,7 @@ $(function() {
     hiphopAPI(query);
   });
 
-  // $("#stop-button").on("click", function(event) {
-  //   event.preventDefault();
-  //   Tone.Transport.pause();
-  //   state = false;
-  // });
-  //
-  // function buildChords(data) {
-  //   var chords = [];
-  //   //TODO https://github.com/Tonejs/Tone.js/wiki/Time
-  //   var time = 0;
-  //   for (key in data) {
-  //     var chord = [];
-  //     chord.push(time + "i");
-  //     time+=10;
-  //     var notes = [];
-  //     for (var i = 1; i <= data[key].length; i++){
-  //       if (data[key][i-1] === "#196127") {
-  //         notes.push(data[key][i-1] = "E" + i);
-  //       }
-  //       else if (data[key][i-1] === "#239a3b") {
-  //         notes.push(data[key][i-1] = "D" + i);
-  //       }
-  //       else if (data[key][i-1] === "#7bc96f") {
-  //         notes.push(data[key][i-1] = "B" + i);
-  //       }
-  //       else if (data[key][i-1] === "#c6e48b") {
-  //         notes.push(data[key][i-1] = "A" + i);
-  //       }
-  //       else {
-  //         notes.push(data[key][i-1] = "G" + i);
-  //       }
-  //     }
-  //     chord.push(notes);
-  //     chords.push(chord);
-  //   }
-  //   playScrape(chords);
-  // }// end buildChords
-  //
+
   // //TODO read up on better handling of Draw https://tonejs.github.io/docs/r11/Part
   // function playScrape(chords) {
   //   var n = '16n';

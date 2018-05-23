@@ -23,6 +23,7 @@ app.get("/api/:query", function(req, res) {
       headers: { 'Authorization': 'Token ' + token }
     })
     .then(function (response) {
+      console.log(response.data.results.length);
       res.send(response.data);
     })
     .catch(function (error) {
