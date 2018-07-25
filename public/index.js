@@ -45,6 +45,7 @@ $(function() {
       if (jQuery.isEmptyObject(data)) {
         $("h1").text("Not a valid keyword");
       } else {
+        console.log(data);
         beatMaker(data);
       }
     });
