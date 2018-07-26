@@ -31,7 +31,9 @@ $(function() {
       // b.append(`<p>"${data.results[i].sentiment.sentiment_type}"</p>`);
       $("#beat-" + i).append(b);
       // $("#beat-" + i).append(`<p>"${data.results[i].title}"</p>`);
-      $("#beat-" + i).append(`<p>${data.results[i].artist.name}</p>`);
+      let p = $('<div>').addClass("artist");
+      p.append(`<p>${data.results[i].artist.name}</p>`);
+      $("#beat-" + i).append(p);
 
     }
 
